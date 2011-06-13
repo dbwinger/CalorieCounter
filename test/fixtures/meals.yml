@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  eaten_at: 2011-05-24 14:42:07
+  image_url: MyString
+  calories: 1
+  user_id: 1
+  notes: MyText
+
+two:
+  eaten_at: 2011-05-24 14:42:07
+  image_url: MyString
+  calories: 1
+  user_id: 1
+  notes: MyText

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Eaten at:</b>
+  <%= @meal.eaten_at %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= image_tag @meal.image_url %>
+</p>
+
+<p>
+  <b>Calories:</b>
+  <%= @meal.calories %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @meal.user_id %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @meal.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_meal_path(@meal) %> |
+<%= link_to 'Back', meals_path %>
+

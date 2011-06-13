@@ -1,0 +1,10 @@
+<%= simple_form_for(@user) do |f| %>
+  <%= f.input :username %>
+  <%= f.input :email %>
+  <%= (f.input :role, :collection => User::ROLES) if can? :change_roles, @user %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+
+  <%= f.submit %>
+<% end %>
+

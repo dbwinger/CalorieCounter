@@ -1,0 +1,38 @@
+<h1>
+<% if params[:user_id] %>
+  <% if params[:user_id] == current_user.id %>
+    My Meals
+  <% else %>
+    <%= User.find(params[:user_id]).username %>'s Meals
+  <%end %>
+<%else%>
+  Everyone's Meals
+<%end%>
+</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Eaten at</th>
+    <th>Image url</th>
+    <th>Calories</th>
+    <th>Notes</th>
+    <th></th>
+  </tr>
+
+<% @meals.each do |meal| %>
+  <tr>
+    <td><%= link_to meal.user.username, user_meals_path(meal.user) %></td>
+    <td><%= meal.eaten_at %></td>
+    <td><%= image_tag(meal.image_url, :width => '90px') %></td>
+    <td><%= meal.calories || 'Still calculating' %></td>
+    <td><%= meal.notes %></td>
+    <td><%= show_edit_destroy_links meal %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Meal', new_meal_path %>
+

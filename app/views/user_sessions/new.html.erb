@@ -1,0 +1,7 @@
+<h1>Log in</h1>
+<% simple_form_for @user_session do |f| %>
+  <%= f.input :username %>
+  <%= f.input :password %>
+  <%= f.submit "Log in" %>
+<% end %>
+
