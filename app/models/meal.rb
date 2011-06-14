@@ -1,5 +1,6 @@
 class Meal < ActiveRecord::Base
   belongs_to :user
+  has_many :comments, :as => :commentable
 
   def save_and_send_to_cloudfactory
     require 'tempfile'

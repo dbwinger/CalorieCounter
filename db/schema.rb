@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110613045547) do
+ActiveRecord::Schema.define(:version => 20110613141004) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "commentable_id"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "commentable_type"
+  end
 
   create_table "meals", :force => true do |t|
     t.datetime "eaten_at"
@@ -21,6 +30,8 @@ ActiveRecord::Schema.define(:version => 20110613045547) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "public"
+    t.string   "comment_type"
+    t.integer  "comment_id"
   end
 
   create_table "user_sessions", :force => true do |t|
@@ -37,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20110613045547) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "role"
+    t.integer  "comment_id"
   end
 
 end

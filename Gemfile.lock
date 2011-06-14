@@ -47,6 +47,7 @@ GEM
     builder (2.1.2)
     cancan (1.6.5)
     crack (0.1.8)
+    dynamic_form (1.1.4)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     hashie (1.0.0)
@@ -98,6 +99,7 @@ DEPENDENCIES
   authlogic
   cancan
   cloud_factory!
+  dynamic_form
   rails (= 3.0.7)
   rails3-generators
   rake (= 0.8.7)

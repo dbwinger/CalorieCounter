@@ -31,6 +31,7 @@
       <% end -%>
       <%= yield %>
     </div>
+    <%= (link_to 'Give me superpowers!!!', user_superpowers_path(current_user)) if can? :superpowers, current_user %>
   </body>
 </html>
 

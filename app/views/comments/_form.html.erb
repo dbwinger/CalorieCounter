@@ -1,0 +1,6 @@
+<%= simple_form_for [@meal.nil? ? @user : @meal, @comment] do |f| %>
+  <%= f.error_messages %>
+  <%= f.input :text, :label => false %>
+  <%= f.submit %>
+<%end%>
+

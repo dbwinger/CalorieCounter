@@ -1,7 +1,7 @@
 class CreateComments < ActiveRecord::Migration
   def self.up
     create_table :comments do |t|
-      t.references :commentable
+      t.references :commentable, :polymophic => true
       t.text :text
 
       t.timestamps
@@ -12,3 +12,4 @@ class CreateComments < ActiveRecord::Migration
     drop_table :comments
   end
 end
+

@@ -1,0 +1,18 @@
+<div class='meal'>
+  <%= image_tag meal.image_url, :class => 'meal-image' %>
+  <div class="comments">
+    <%= render meal.comments %>
+    <% if can? :create, meal.comments.build %>
+      <%= (link_to 'Leave a comment', new_meal_comment_path(meal)) %>
+    <%else%>
+      Log in to leave a comment
+    <%end%>
+  </div>
+  Meal eaten by <strong><%= link_to meal.user.username, user_meals_path(meal.user)%></strong>
+  at <strong><%= meal.eaten_at %></strong>.<br/>
+  <strong>Calories: </strong><%= meal.calories || 'Still calculating' %><br/>
+  <strong>Notes:</strong><%= meal.notes %><br/>
+  <%= show_edit_destroy_links meal, {:user_id => meal.user } %>
+  <div style='clear:both'></div>
+</div>
+

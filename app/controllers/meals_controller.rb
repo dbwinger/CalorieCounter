@@ -1,15 +1,12 @@
 class MealsController < ApplicationController
   # Nested resources
-#  if params[:user_id]
-    load_and_authorize_resource :user
-    load_and_authorize_resource :meal, :through => :user, :shallow => true
-#  else
-#    load_and_authorize_resource
-#  end
+  load_resource :user
+  load_and_authorize_resource :meal, :through => :user, :shallow => true
 
   def create
+    @meal.user_id = current_user.id
     if @meal.save
-      redirect_to(@meal, :notice => 'Meal was successfully created.')
+      redirect_to user_meals_path(@meal.user), :notice => 'Meal was successfully created.'
     else
       render :action => "new"
     end
@@ -17,7 +14,7 @@ class MealsController < ApplicationController
 
   def update
     if @meal.update_attributes(params[:meal])
-      redirect_to(@meal, :notice => 'Meal was successfully updated.')
+      redirect_to user_meals_path(@meal.user), :notice => 'Meal was successfully updated.'
     else
       render :action => "edit"
     end

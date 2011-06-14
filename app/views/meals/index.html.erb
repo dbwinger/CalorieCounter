@@ -1,38 +1,18 @@
-<h1>
-<% if params[:user_id] %>
-  <% if params[:user_id] == current_user.id %>
-    My Meals
+
+<% if @user %>
+  <% if @user == current_user %>
+    <h1>My Meals</h1>
+    <%= link_to "Leave a comment", new_user_comment_path(@user) %><br/>
   <% else %>
-    <%= User.find(params[:user_id]).username %>'s Meals
+    <h1><%= @user.username %>'s Meals</h1>
+    <%= link_to "Leave a comment for #{@user.username}", new_user_comment_path(@user) %><br/>
   <%end %>
+  <%= render @user.comments %>
 <%else%>
-  Everyone's Meals
+  <h1>Everyone's Meals</h1>
 <%end%>
-</h1>
-
-<table>
-  <tr>
-    <th>User</th>
-    <th>Eaten at</th>
-    <th>Image url</th>
-    <th>Calories</th>
-    <th>Notes</th>
-    <th></th>
-  </tr>
-
-<% @meals.each do |meal| %>
-  <tr>
-    <td><%= link_to meal.user.username, user_meals_path(meal.user) %></td>
-    <td><%= meal.eaten_at %></td>
-    <td><%= image_tag(meal.image_url, :width => '90px') %></td>
-    <td><%= meal.calories || 'Still calculating' %></td>
-    <td><%= meal.notes %></td>
-    <td><%= show_edit_destroy_links meal %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Meal', new_meal_path %>
+<%= (link_to 'New Meal', new_user_meal_path(current_user)) if current_user && can?(:create, current_user.meals.build) %>
+<div class='meal-list'>
+  <%= render @meals%>
+</div>
 

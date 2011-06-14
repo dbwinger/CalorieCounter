@@ -1,0 +1,4 @@
+<%= comment.text %><span class='author'> - <%= comment.user.username %> at <%= comment.created_at%></span><br/>
+<%= destroy_link comment, {(comment.commentable_type == "Meal" ? :meal_id : :user_id) => comment.commentable_id } %>
+<br/>
+

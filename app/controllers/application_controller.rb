@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_user_session
 
   rescue_from CanCan::AccessDenied do |exception|
+    puts exception.action
+    puts exception.subject
     redirect_to root_url, :alert => exception.message
   end
 
@@ -18,6 +20,12 @@ class ApplicationController < ActionController::Base
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.record
+  end
+
+  private
+
+  def current_ability
+    @current_ability ||= Ability.new(current_user, session[:superpowers])
   end
 end
 
